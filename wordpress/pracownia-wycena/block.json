@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prw/quote-calculator",
+  "version": "0.1.0",
+  "title": "Kalkulator wyceny strony",
+  "category": "widgets",
+  "icon": "calculator",
+  "description": "Orientacyjna wycena strony WordPress według liczby podstron.",
+  "textdomain": "pracownia-wycena",
+  "supports": { "html": false },
+  "editorScript": "prw-quote-editor",
+  "viewScript": "prw-quote-view"
+}

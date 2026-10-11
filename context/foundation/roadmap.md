@@ -22,7 +22,7 @@ Odwiedzający rozumie, co obejmuje pakiet bazowy i dopłata, wybiera liczbę pod
 
 | Kolejność | Element | Status | Zależność |
 | --- | --- | --- | --- |
-| 1 | S-01: jasny zakres pakietu przy wycenie | ready | brak |
+| 1 | S-01: jasny zakres pakietu przy wycenie | done locally | brak |
 | 2 | F-01: powtarzalna kontrola kalkulatora | planned | odblokowuje S-02 i S-03 |
 | 3 | S-02: czytelne zachowanie na granicach liczby podstron | blocked | F-01 |
 | 4 | S-03: pełniejsze podsumowanie zakresu w e-mailu | blocked | F-01, S-01 |
@@ -52,7 +52,7 @@ Podstawa: `README.md`, `context/foundation/health-check.md`, `context/deployment
 
 ### S-01 — Odwiedzający rozumie zakres kwoty
 
-- **Status:** ready. **Priorytet:** pierwszy.
+- **Status:** done locally; tekst do oceny właściciela przed publikacją. **Priorytet:** pierwszy.
 - **Efekt:** obok kalkulatora widać, co zawiera pakiet bazowy, za co naliczana jest dopłata i że kwota jest orientacyjna. Tekst da się edytować w Gutenbergu bez zmiany wtyczki.
 - **Akceptacja:** przy wartości mieszczącej się w pakiecie i ponad nią człowiek potrafi powiązać opis z pokazanym rozbiciem ceny; widok pozostaje czytelny na telefonie. `prd.md`: FR-001, US-001.
 - **Granica:** treść oferty wymaga decyzji właściciela przed publikacją; można przygotować roboczą wersję w repo i lokalnie. Nie zmieniamy wzoru ani przykładowych cen.
@@ -88,5 +88,7 @@ Po S-01 przejść do planu i implementacji F-01 oraz S-02 w kolejnych lekcjach w
 - Przed M-01 powstał działający MVP: motyw, blok wyceny, ustawienia i wdrożenie. M-01 dotyczy jego dopracowania oraz ćwiczenia workflow, nie budowy od zera.
 
 ## Done
+
+- S-01 (`clarify-quote-scope`): opis i stawka wdrożone do Local, sprawdzone dla 1 i 2 podstron oraz na szerokości 390 px. Tekst czeka na ocenę właściciela przed publikacją.
 
 M-01 będzie `done`, gdy S-01, F-01, S-02 i S-03 spełnią swoje kryteria, a główny przepływ zostanie ponownie sprawdzony lokalnie. Publiczne wdrożenie wymaga osobnej kontroli kopii i wyniku na produkcji.

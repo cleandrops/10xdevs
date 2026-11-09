@@ -23,9 +23,9 @@ Odwiedzający rozumie, co obejmuje pakiet bazowy i dopłata, wybiera liczbę pod
 | Kolejność | Element | Status | Zależność |
 | --- | --- | --- | --- |
 | 1 | S-01: jasny zakres pakietu przy wycenie | done locally | brak |
-| 2 | F-01: powtarzalna kontrola kalkulatora | planned | odblokowuje S-02 i S-03 |
-| 3 | S-02: czytelne zachowanie na granicach liczby podstron | blocked | F-01 |
-| 4 | S-03: pełniejsze podsumowanie zakresu w e-mailu | blocked | F-01, S-01 |
+| 2 | F-01: powtarzalna kontrola kalkulatora | done locally | odblokowuje S-02 i S-03 |
+| 3 | S-02: czytelne zachowanie na granicach liczby podstron | planned | F-01 wykonane |
+| 4 | S-03: pełniejsze podsumowanie zakresu w e-mailu | planned | F-01 wykonane; tekst S-01 czeka na akceptację do publikacji |
 
 ## Baseline
 
@@ -44,6 +44,7 @@ Podstawa: `README.md`, `context/foundation/health-check.md`, `context/deployment
 
 ### F-01 — Powtarzalna kontrola kalkulatora
 
+- **Status:** done locally. `node --test tests/calculator.test.js` sprawdza regułę ceny, błędne wejście i `mailto:` na rzeczywistym skrypcie widoku. Test nie obejmuje renderowania PHP ani przeglądarki.
 - **Unlocks:** S-02, S-03.
 - Dodać najmniejszą praktyczną kontrolę głównego przepływu: poprawna kwota w pakiecie i ponad pakietem, niepoprawna liczba podstron oraz treść i adres linku e-mail. Wybrać narzędzie dopiero przy implementacji, bez wprowadzania zbędnych zależności.
 - **Done:** jedna udokumentowana komenda daje jednoznaczny wynik i sprawdza zachowanie, nie tylko składnię. Odniesienie: `prd.md`, „Kryteria sukcesu”, FR-002–FR-005.
@@ -59,19 +60,19 @@ Podstawa: `README.md`, `context/foundation/health-check.md`, `context/deployment
 
 ### S-02 — Odwiedzający łatwo wybiera poprawną liczbę podstron
 
-- **Status:** blocked przez F-01.
+- **Status:** planned po F-01.
 - **Efekt:** przyciski ± i pole liczbowe jasno sygnalizują dolną i górną granicę; przy niepoprawnej wartości wynik oraz kontakt nie sugerują prawidłowej wyceny.
 - **Akceptacja:** obsługa klawiaturą i przyciskami działa dla 1, maksimum oraz wartości spoza zakresu; test z F-01 wykrywa regresję. `prd.md`: FR-002, FR-003, „Kryteria sukcesu”.
 
 ### S-03 — Odwiedzający wysyła czytelny zakres zapytania
 
-- **Status:** blocked przez F-01 i S-01.
+- **Status:** planned po F-01; tekst S-01 nadal czeka na decyzję właściciela przed publikacją.
 - **Efekt:** przygotowany e-mail podaje liczbę podstron, cenę bazową, ewentualną dopłatę i sumę, zgodnie z opisem oferty. Widoczny adres e-mail nadal pozwala skontaktować się bez obsługi `mailto:`.
 - **Akceptacja:** treść linku odpowiada wynikowi na stronie dla wartości w pakiecie i ponad pakietem; kontrola F-01 przechodzi. `prd.md`: FR-005, US-002.
 
 ## Backlog Handoff
 
-Po S-01 przejść do planu i implementacji F-01 oraz S-02 w kolejnych lekcjach workflow. Każdą zmianę sprawdzić lokalnie, odnotować wynik i dopiero później rozważać wdrożenie na publiczną stronę. Ten plik jest backlogiem dla małego projektu; osobne issues nie są konieczne.
+Po F-01 przejść do S-02, następnie S-03. Każdą zmianę sprawdzić lokalnie, odnotować wynik i dopiero później rozważać wdrożenie na publiczną stronę. Ten plik jest backlogiem dla małego projektu; osobne issues nie są konieczne.
 
 ## Open Roadmap Questions
 
@@ -90,5 +91,6 @@ Po S-01 przejść do planu i implementacji F-01 oraz S-02 w kolejnych lekcjach w
 ## Done
 
 - S-01 (`clarify-quote-scope`): opis i stawka wdrożone do Local, sprawdzone dla 1 i 2 podstron oraz na szerokości 390 px. Tekst czeka na ocenę właściciela przed publikacją.
+- F-01 (`f01-calculator-check`): trzy automatyczne testy zachowania przechodzą; celowo usunięta dopłata w kopii skryptu powoduje błąd testów.
 
 M-01 będzie `done`, gdy S-01, F-01, S-02 i S-03 spełnią swoje kryteria, a główny przepływ zostanie ponownie sprawdzony lokalnie. Publiczne wdrożenie wymaga osobnej kontroli kopii i wyniku na produkcji.

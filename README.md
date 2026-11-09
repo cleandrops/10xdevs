@@ -21,4 +21,6 @@ Ustawienia zapisane w bazie WordPressa nie są częścią repozytorium. Początk
 
 ## Kontrola kodu
 
-Uruchom `bash scripts/check-syntax.sh` w katalogu repozytorium. Skrypt wymaga lokalnych `php` i `node` i sprawdza składnię plików PHP, JavaScript oraz JSON. Test przepływu użytkownika i CI są kolejnym etapem projektu.
+Uruchom `bash scripts/check-syntax.sh` w katalogu repozytorium. Skrypt wymaga lokalnych `php` i `node` i sprawdza składnię plików PHP, JavaScript oraz JSON.
+
+Uruchom `node --test tests/calculator.test.js` (Node 18+), aby sprawdzić regułę wyceny, odrzucenie niepoprawnej wartości i zawartość linku e-mail. Test wykonuje rzeczywisty `view.js` w małym modelu DOM; nie wymaga WordPressa ani nowych pakietów. Nie zastępuje testu E2E w przeglądarce. CI jest osobnym późniejszym etapem.

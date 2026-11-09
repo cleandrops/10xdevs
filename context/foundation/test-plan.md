@@ -50,6 +50,6 @@ Na razie nie dodajemy hooków, triggerów ani CI: projekt nie ma jeszcze testu z
 
 ## 6. Cookbook i status
 
-**Cookbook:** do uzupełnienia po F-01: lokalizacja testu, komenda, przygotowanie danych i polityka mockowania. Nie wpisujemy wzorca, zanim nie powstanie działający przykład.
+**Cookbook — test logiki kalkulatora:** `tests/calculator.test.js`; komenda `node --test tests/calculator.test.js` (Node 18+). Test uruchamia niezmieniony `wordpress/pracownia-wycena/view.js` w `node:vm` z minimalnym modelem DOM. Parametry podaje przez `dataset`, a oczekiwane kwoty i treść e-maila bierze z reguły w PRD. Nie mockujemy samego algorytmu. Po zmianie `view.js` uruchom tę komendę razem z `bash scripts/check-syntax.sh`.
 
-**Status:** plan gotowy; faza 1 (F-01) następna. Wejście do kolejnej sesji: research sposobu uruchomienia najtańszego testu głównego przepływu, potem plan i implementacja. Po każdej fazie wrócić do mapy ryzyk i zaktualizować status.
+**Status:** faza 1 (F-01) wykonana lokalnie. Test sprawdza regułę dla 1 i 2 podstron, 0 jako błąd, powrót do poprawnej wartości, inne parametry i `mailto:`. Celowo usunięta dopłata w tymczasowej kopii `view.js` spowodowała trzy błędy testów. Następna faza: S-02, potem S-03; po nich ponownie przejrzeć mapę ryzyk. Test E2E pozostaje osobnym etapem kursu.

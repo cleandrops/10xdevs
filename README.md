@@ -24,3 +24,7 @@ Ustawienia zapisane w bazie WordPressa nie są częścią repozytorium. Początk
 Uruchom `bash scripts/check-syntax.sh` w katalogu repozytorium. Skrypt wymaga lokalnych `php` i `node` i sprawdza składnię plików PHP, JavaScript oraz JSON.
 
 Uruchom `node --test tests/calculator.test.js` (Node 18+), aby sprawdzić regułę wyceny, odrzucenie niepoprawnej wartości i zawartość linku e-mail. Test wykonuje rzeczywisty `view.js` w małym modelu DOM; nie wymaga WordPressa ani nowych pakietów. Nie zastępuje testu E2E w przeglądarce. CI jest osobnym późniejszym etapem.
+
+## E2E na lokalnym WordPressie
+
+Włącz witrynę ClearWP w aplikacji Local, a potem w katalogu repozytorium uruchom `npm ci` i `npm run test:e2e`. Test używa Chromium Playwrighta w osobnym profilu, nie zmienia ustawień przeglądarki ani danych WordPressa. Jeśli Chromium nie jest zainstalowany, uruchom `npx playwright install chromium`. Domyślny adres to `http://localhost:10003`; dla innej instalacji ustaw `PRW_BASE_URL` na jej lokalny adres. Uruchom test dwukrotnie, aby sprawdzić powtarzalność. Zrzuty z testów trafiają do ignorowanego przez Git katalogu `test-results/`.

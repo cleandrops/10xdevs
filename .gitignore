@@ -3,6 +3,8 @@
 .env.*
 !.env.example
 node_modules/
+test-results/
+playwright-report/
 vendor/
 wp-config.php
 wp-content/uploads/

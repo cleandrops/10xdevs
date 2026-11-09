@@ -51,3 +51,11 @@ Text Domain: pracownia-www
 /* Blokowy układ WordPressa domyślnie ogranicza grupy do contentSize. */
 .wp-site-blocks .wrap { width: min(1160px, calc(100% - 48px)) !important; max-width: 1160px !important; margin-left: auto !important; margin-right: auto !important; }
 @media (max-width: 700px) { .wp-site-blocks .wrap { width: min(100% - 32px, 540px) !important; } }
+
+/* Stany interakcji kalkulatora: wspólny kolor błędu i czytelny fokus klawiatury. */
+.prw-calculator { --prw-error: #ab3434; }
+.prw-calculator .number-control button:focus-visible { outline: 3px solid var(--green); outline-offset: -3px; }
+.prw-calculator .prw-email-link:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+.prw-calculator .prw-page-count[aria-invalid="true"],
+.prw-calculator .prw-page-count[aria-invalid="true"]:focus { outline: 2px solid var(--prw-error); outline-offset: -2px; }
+.prw-calculator .field-error { color: var(--prw-error); }

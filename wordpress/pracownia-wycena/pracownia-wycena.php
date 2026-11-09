@@ -35,12 +35,17 @@ function prw_sanitize_quote_settings( $raw ) {
 	$raw      = is_array( $raw ) ? $raw : array();
 	$max      = min( 100, max( 1, absint( $raw['max_pages'] ?? $defaults['max_pages'] ) ) );
 	$email    = sanitize_email( $raw['contact_email'] ?? $defaults['contact_email'] );
+	if ( ! is_email( $email ) ) {
+		add_settings_error( 'prw_quote_settings', 'invalid_contact_email', 'Nie zapisano parametrów: podaj poprawny adres e-mail.', 'error' );
+		error_log( '[Pracownia WWW — Wycena] Odrzucono zapis parametrów: niepoprawny adres e-mail.' );
+		return prw_quote_settings();
+	}
 	return array(
 		'base_price'       => min( 10000000, absint( $raw['base_price'] ?? $defaults['base_price'] ) ),
 		'included_pages'   => min( $max, max( 1, absint( $raw['included_pages'] ?? $defaults['included_pages'] ) ) ),
 		'extra_page_price' => min( 10000000, absint( $raw['extra_page_price'] ?? $defaults['extra_page_price'] ) ),
 		'max_pages'        => $max,
-		'contact_email'    => is_email( $email ) ? $email : $defaults['contact_email'],
+		'contact_email'    => $email,
 	);
 }
 
